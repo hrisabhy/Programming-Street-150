@@ -354,3 +354,218 @@ def find_lcm(a, b):
         # Check if i is divisible by the smaller number    
         if i % smallest == 0:
             return i
+
+# Problem 12: Count vowels and consonants
+def find_vowel_consonant(str):
+    # Remove spaces from the string
+    """
+    This function takes a string and counts the number of vowels and consonants present in the string.
+    
+    Parameters:
+    str (str): The string to be analyzed.
+    
+    Returns:
+    None
+    """
+    filtered_str = str.replace(" ", "")
+    
+    vowels = "aeiouAEIOU"
+    vowel_count = 0
+    cons_count = 0
+
+    for char in filtered_str:
+        # Check if the character is a vowels string and increment the vowel count
+        if char in vowels:
+            vowel_count += 1
+        # else increment the consonant count
+        else:
+            cons_count += 1
+    
+    print( f"Vowels: {vowel_count}, Consonants: {cons_count}")
+
+# Problem 13: Reverse the string
+def reverse_string(str):
+    """
+    This function takes a string and returns the reversed string.
+    
+    Parameters:
+    str (str): The string to be reversed.
+    
+    Returns:
+    str: The reversed string.
+    """
+    rev_str = ""
+    
+    # Iterating through string from last index to first index
+    for i in range(len(str) - 1, -1, -1):
+        # Concatenating the character to rev_str variable
+        rev_str += str[i]
+    
+    return rev_str
+
+# Problem 14: Finding the Largest and Smallest Numbers in an Array
+def find_largest_and_smallest(arr):
+    """
+    This function takes an array of numbers and finds the largest and smallest element in it.
+    
+    Parameters:
+    arr (list): The list of numbers to be searched.
+    
+    Returns:
+    None
+    """
+    # Assign largest as negative infinity so when we use it to compare with
+    # array element it will be smallest and store the largest element of array
+    largest = float("-inf")
+    # By the same logic assign the smallest variable as infinity
+    smallest = float("inf")
+
+    # Iterate through the array
+    for i in range(len(arr)):
+        # Compare largest and current array element using max function
+        largest = max(largest, arr[i])
+        # Compare smallest and current array element using min function
+        smallest = min(smallest, arr[i])
+
+    print( f"Largest: {largest}, Smallest: {smallest}")
+
+# Problem 15: Sorting an Array
+def sort_array(arr):
+    # Bubble sort algorithm 
+    """
+    This function takes an array of numbers and sorts it in ascending order using bubble sort algorithm.
+    
+    Parameters:
+    arr (list): The list of numbers to be sorted.
+    
+    Returns:
+    None
+    """
+    for i in range(len(arr)):
+        for i in range(len(arr) - i - 1):
+            if arr[i] > arr[i+1]:
+                arr[i], arr[i+1] = arr[i+1], arr[i]
+    
+    print(arr)
+
+# Problem 16: Finding the Sum of Elements in an Array
+def sum_of_arr(arr):
+    """
+    This function takes an array of numbers and adds up all the elements of array.
+    
+    Parameters:
+    arr (list): The list of numbers to be summed.
+    
+    Returns:
+    None
+    """
+    arr_sum = 0
+    
+    # Iterate through the array to add up the elements of array in arr_sum
+    # variable
+    for i in range(len(arr)):
+        arr_sum += arr[i]
+    
+    print(arr_sum)
+
+# Problem 17: Checking for Armstrong Numbers in a Range
+def check_for_armstrong_numbers(range_arr):
+    """
+    This function takes an array with two elements which represent the upper bound and lower bound of a range and prints out all the armstrong numbers in the range.
+
+    Parameters:
+    range_arr (list): The list of two elements which represent the range.
+
+    Returns:
+    None
+    """
+    # Extracting upper bound and lower bound of the range
+    start = range_arr[0]
+    end = range_arr[1]
+    
+    res_arr = []
+    
+    # Function for checking if a number is armstrong or not:
+    def armstrong_number(num):
+            # Edge case for detecting the single digit numbers greater than one
+            if 1 < num < 10:
+                return False
+
+            if num == 1:
+                return True
+            
+            # Count the number of digits
+            dig_count = 0
+            temp = num
+            while temp != 0:
+                dig_count += 1
+                temp = temp // 10
+            
+            # Calculate the sum of digits raised to the power of dig_count
+            temp = num
+            arm_num = 0
+            while temp != 0:
+                dig = temp % 10
+                arm_num += dig ** dig_count
+                temp = temp // 10
+            
+            # Check if the sum is equal to the original number
+            return arm_num == num
+
+    # Iterate through the range and check if the number is armstrong or not!
+    for i in range(start, end + 1):
+        if armstrong_number(i):
+            res_arr.append(i)
+    
+    print(res_arr)
+
+# Problem 18: Generating multiplication tables
+def multiplication_table(num):
+    """
+    Prints the multiplication table for the given number up to 10.
+
+    Parameters:
+    num (int): The number for which the multiplication table is to be printed.
+
+    Returns:
+    None
+    """
+    for i in range(1, 11):
+        product = num * i
+        print(f"{num} X {i} = {product}")
+
+# Problem 19: Finding Prime Numbers in a Range
+def prime_number_range(range_arr):
+
+    
+    # Extracting upper bound and lower bound of the range    
+    start = range_arr[0]
+    end = range_arr[1]
+
+    res_arr = []
+    
+    def prime_number(n):
+        # Handle numbers less than or equal to 1 (not prime)
+        if n <= 1:
+            return False
+        
+        # Special case for 2 (the only even prime)
+        elif n == 2:
+            return True
+
+        # Check divisibility by numbers from 2 to the square root of n
+        for i in range(2, int(n**0.5) + 1):
+            # If n is divisible by i, it's not prime
+            if n % i == 0:
+                return False
+        
+        # If no divisors found up to the square root, n is prime
+        return True
+
+
+    # Iterate through the range and check if the number is prime or not!
+    for i in range(start, end + 1):
+        if prime_number(i):
+            res_arr.append(i)
+    
+    print(res_arr)
