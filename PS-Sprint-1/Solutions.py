@@ -569,3 +569,101 @@ def prime_number_range(range_arr):
             res_arr.append(i)
     
     print(res_arr)
+
+# Problem 20: Checking for perfect number
+def is_perfect(num):
+    sum_div = 0
+    for i in range(1, num):
+        if num % i == 0:
+            sum_div += i
+    return sum_div == num
+
+# Problem 21: Calculating the Sum of Even Numbers in a Range
+def sum_even_range(range_arr):
+    start = range_arr[0]
+    end = range_arr[1]
+
+    total_sum = 0
+
+    for i in range(start, end + 1):
+        if i % 2 == 0:
+            total_sum += i
+    
+    return total_sum
+
+# Problem 22: Calculating the Sum of Even Numbers in a Range
+def sum_odd_range(range_arr):
+    start = range_arr[0]
+    end = range_arr[1]
+
+    total_sum = 0
+
+    for i in range(start, end + 1):
+        if i % 2 != 0:
+            total_sum += i
+    
+    return total_sum
+
+# Problem 23: Finding the Fibonacci Number at a Specific Position
+def find_fibo_x(pos):
+    first = 0
+    second = 1
+    i = 1
+    
+    while i < pos:
+        next_term = first + second
+        first, second = second, next_term
+        i += 1
+    
+    return next_term
+
+# Problem 24: Printing Prime Numbers Less Than a Given Number
+def print_prime(x):
+    
+    def is_prime(num):
+
+        if num == 2:
+            return True
+
+        for i in range(2, int(num ** 0.5) + 1):
+            if num % i == 0:
+                return False
+        
+        return True
+
+    for i in range(2, x):
+        if is_prime(i):
+            print(i, end = " ")
+
+# Problem 25: Finding the Number of Digits in a Number
+def find_num_digits(num):
+    total_dig = 0
+
+    while num > 0:
+        total_dig += 1
+        num = num // 10
+    
+    return total_dig
+
+# Problem 26: Checking if a Number is a Narcissistic Number
+def is_narcissistic(num):
+
+    def find_num_digits(num):
+        total_dig = 0
+
+        while num > 0:
+            total_dig += 1
+            num = num // 10
+        
+        return total_dig
+
+    num_digs = find_num_digits(num)
+    x = 0
+    temp_num = num
+
+    while temp_num > 0:
+        dig = temp_num % 10
+        x += dig ** num_digs
+        temp_num = temp_num // 10
+    
+    return x == num
